@@ -1,0 +1,47 @@
+<nav class="navbar">
+    <div class="nav-title">Profil</div>
+    <div class="nav-buttons">
+        <button class="nav-button" (click)="profil()">Profil</button>
+        <button class="nav-button" (click)="vikendice()">Vikendice</button>
+        <button class="nav-button" (click)="rezervacije()">Rezervacije</button>
+        <button class="nav-button" (click)="odjava()">Odjava</button>
+    </div>
+</nav>
+<div class="register">
+    <h2>Profil</h2>
+    <form class="registracija-form" (ngSubmit)="azurirajProfil()">
+        <label for="ime">Ime:</label>
+        <input type="text" id="ime" [(ngModel)]="turista.ime" name="ime" [defaultValue]="turista.ime" required>
+        <br>
+        <label for="prezime">Prezime:</label>
+        <input type="text" id="prezime" [(ngModel)]="turista.prezime" name="prezime" required>
+        <br>
+        <label for="adresa">Adresa:</label>
+        <input type="text" id="adresa" [(ngModel)]="turista.adresa" name="adresa" required>
+        <br>
+        <label for="telefon">Telefon:</label>
+        <input type="text" id="telefon" [(ngModel)]="turista.telefon" name="telefon" required (input)="onTelefonInput($event)">
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" [(ngModel)]="turista.mejl" name="email" required>
+        <br>
+        <label>Trenutna slika:</label>
+        <img [src]="profilna_slika" alt="Trenutna slika" class="trenutna-slika"/>
+        <br>
+        <label for="slika">Nova slika:</label>
+        <input type="file" id="slika" (change)="onFileSelected($event)" name="slika">
+        <br>
+        <label for="broj_kartice">Broj kartice:</label>
+        <input type="text" id="broj_kartice" [(ngModel)]="turista.broj_kartice" name="broj_kartice" required (input)="onBrojKarticeInput($event)">
+        @if(karticaValidna){
+            <img [src]="ikonaKartice" alt="Ikona kartice" class="ikona-kartice"/>
+        }
+        <br>
+        <button type="submit">Azuriraj profil</button>
+    </form>
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+
+</div>
+

@@ -1,0 +1,114 @@
+<nav class="navbar">
+    <div class="nav-title">Vikendica</div>
+    <div class="nav-buttons">
+        <button class="nav-button" (click)="nazad()">Nazad</button>
+    </div>
+</nav>
+<div class="vikendica-top">
+    <h2>{{vikendica.naziv}} ({{vikendica.mesto}})</h2>
+    <hr>
+</div>
+<div class="container-vikendica-detalji">
+    <div class="gallery">
+      <h3>Galerija slika</h3>
+      <div class="main">
+          <button class="nav prev" (click)="prevImage()">‹</button>
+          <img *ngIf="selectedImage; else noImage" [src]="'http://localhost:8080/' + selectedImage" alt="Slika vikendice" class="main-img"/>
+          <button class="nav next" (click)="nextImage()">›</button>
+      </div>
+      <ng-template #noImage>
+          <div class="no-image">Nema slika za prikaz.</div>
+      </ng-template>
+
+      <div class="thumbs" *ngIf="slike && slike.length > 0">
+          <img *ngFor="let s of slike; let i = index" [src]="'http://localhost:8080/' + s" class="thumb" [class.selected]="i === selectedImageIndex" (click)="selectImage(i)"/>
+      </div>
+    </div>
+    <div class="informacije">
+      <div class="usluge">
+          <h3>Usluge</h3>
+          <ul>
+              @for(usluga of usluge; track usluga){
+                  <li>{{ usluga }}</li>
+              }
+          </ul>
+      </div>
+      <div class="cenovnik">
+          <h3>Cenovnik noćenja u vikendici</h3>
+          <table>
+              <thead>
+                  <tr>
+                      <th>Sezona</th>
+                      <th>Cena po noćenju (RSD)</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  @for(stavka of cenovnik; track stavka.id){
+                      <tr>
+                          <td>{{ stavka.sezona }}</td>
+                          <td>{{ stavka.cena }}</td>
+                      </tr>
+                  }
+              </tbody>
+          </table>
+    </div>
+    <div class="cta-row">
+        <button class="btn-book" (click)="iznajmi()">Iznajmi vikendicu</button>
+    </div>
+    <div class="ocena-i-kontakt">
+      <h3>Prosečna ocena</h3>
+      <ng-container *ngIf="vikendica.prosecna_ocena > 0; else noRating">
+        <span class="stars">
+            <ng-container *ngFor="let s of starsFor(vikendica.prosecna_ocena)">
+                <span [ngClass]="{
+                    'star-full': s === 'full',
+                    'star-half': s === 'half',
+                    'star-empty': s === 'empty'
+                }">{{ s === 'full' ? '★' : s === 'half' ? '☆' : '☆' }}</span>
+            </ng-container>
+        </span>
+        &nbsp;{{ vikendica.prosecna_ocena.toFixed(2) }}
+      </ng-container>
+      <ng-template #noRating>
+          Nije ocenjena.
+      </ng-template>
+      <h3>Kontakt telefon</h3>
+      <p>{{ vikendica.telefon }}</p>
+    </div>
+    <div class="mapa">
+      <h3>Lokacija vikendice</h3>
+        <div id="map" aria-label="Mapa lokacije vikendice" style="height:280px; border-radius:8px; overflow:hidden"></div>
+    </div>
+    </div>
+  <div class="komentari">
+      <h3>Komentari i ocene</h3>
+      <div *ngIf="komentari && komentari.length > 0; else noComments">
+          <div *ngFor="let komentar of prikazaniKomentari;" class="komentar">
+              <p><strong>{{ komentar.turista_korisnicko_ime }}</strong> -
+              <span class="stars">
+                  <ng-container *ngFor="let s of starsFor(komentar.ocena)">
+                      <span [ngClass]="{
+                          'star-full': s === 'full',
+                          'star-half': s === 'half',
+                          'star-empty': s === 'empty'
+                      }">{{ s === 'full' ? '★' : s === 'half' ? '☆' : '☆' }}</span>
+                  </ng-container>
+              </span>
+              </p>
+              <p>{{ komentar.tekst }}</p>
+              <p class="datum-komentara">{{ komentar.datum | date : 'dd.MM.yyyy. HH:mm' }}</p>
+              <hr>
+          </div>
+          <div class="pagination">
+              <button (click)="promeniStranu(trenutnaStrana - 1)" [disabled]="trenutnaStrana === 1">Prethodna</button>
+              <span>Strana {{ trenutnaStrana }} od {{ ukupnoStrana }}</span>
+              <button (click)="promeniStranu(trenutnaStrana + 1)" [disabled]="trenutnaStrana === ukupnoStrana">Sledeća</button>
+          </div>
+      </div>
+      <ng-template #noComments>
+          <p>Nema komentara za prikaz.</p>
+      </ng-template>
+  </div>
+</div>
+
+

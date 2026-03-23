@@ -1,0 +1,31 @@
+<nav class="navbar">
+    <div class="nav-title">Promena lozinke</div>
+    <div class="nav-buttons">
+        <button class="nav-button" (click)="pocetna()">Početna</button>
+        <button class="nav-button" (click)="login()">Prijava</button>
+        <button class="nav-button" (click)="registracija()">Registracija</button>
+        <button class="nav-button" (click)="promenaLozinke()">Promena lozinke</button>
+    </div>
+</nav>
+<div class="login">
+    <h2>Promena lozinke</h2>
+    <form class="search-form2" (ngSubmit)="promeniLozinku()">
+        <label for="username">Korisničko ime:</label>
+        <input type="text" id="username" [(ngModel)]="username" name="username" required>
+        <br>
+        <label for="password">Stara lozinka:</label>
+        <input type="password" id="password" [(ngModel)]="password" name="password" required>
+        <br>
+        <label for="password">Nova lozinka:</label>
+        <input type="password" id="password" [(ngModel)]="newpassword" name="password" required (input)="proveraLozinke(newpassword)">
+        <br>
+        <label for="password">Ponovljena nova lozinka:</label>
+        <input type="password" id="password" [(ngModel)]="newpasswordrepeat" name="password" required>
+        <br>
+        <button type="submit">Promeni lozinku</button>
+    </form>
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+
+</div>

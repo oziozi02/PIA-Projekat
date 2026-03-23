@@ -1,0 +1,60 @@
+<nav class="navbar">
+    <div class="nav-title">Vikendice</div>
+    <div class="nav-buttons">
+        <button class="nav-button" (click)="profil()">Profil</button>
+        <button class="nav-button" (click)="vikendice()">Vikendice</button>
+        <button class="nav-button" (click)="rezervacije()">Rezervacije</button>
+        <button class="nav-button" (click)="odjava()">Odjava</button>
+    </div>
+</nav>
+<div class="pretraga">
+    <h3>Pretraga vikendica</h3>
+    <form class="search-form" (ngSubmit)="pretrazi()">
+        Naziv:<input type="text" [(ngModel)]="pretragaNaziv" name="naziv"/>
+        Mesto:<input type="text" [(ngModel)]="pretragaMesto" name="mesto"/>
+        <button type="submit">Pretraži</button>
+    </form>
+</div>
+<div class="lista-vikendica">
+    <h3>Lista vikendica</h3>
+        <table>
+                <thead>
+                    <tr>
+                        <th (click)="toggleSort('naziv')" style="cursor:pointer">
+                            Naziv
+                            <span *ngIf="sortKolona === 'naziv'">{{ sortSmer === 'asc' ? '▲' : '▼' }}</span>
+                        </th>
+                        <th (click)="toggleSort('mesto')" style="cursor:pointer">
+                            Mesto
+                            <span *ngIf="sortKolona === 'mesto'">{{ sortSmer === 'asc' ? '▲' : '▼' }}</span>
+                        </th>
+                        <th>Ocena</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     @for(vikendica of sortedVikendice; track vikendica.id){
+                        <tr>
+                            <td class="vikendica-detalji" (click)="detalji(vikendica.id)">{{ vikendica.naziv }}</td>
+                            <td>{{ vikendica.mesto }}</td>
+                            <td>
+                                <ng-container *ngIf="vikendica.prosecna_ocena > 0; else noRating">
+                                    <span class="stars">
+                                        <ng-container *ngFor="let s of starsFor(vikendica.prosecna_ocena)">
+                                            <span [ngClass]="{
+                                                'star-full': s === 'full',
+                                                'star-half': s === 'half',
+                                                'star-empty': s === 'empty'
+                                            }">{{ s === 'full' ? '★' : '☆' }}</span>
+                                        </ng-container>
+                                    </span>
+                                    &nbsp;{{ vikendica.prosecna_ocena.toFixed(1) }}
+                                </ng-container>
+                                <ng-template #noRating>
+                                    Nije ocenjena.
+                                </ng-template>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+        </table>
+</div>

@@ -1,0 +1,140 @@
+.rezervacije-liste {
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 16px;
+  background: linear-gradient(180deg,#ffffff,#fbfdff);
+  border-radius: 10px;
+  box-shadow: 0 8px 28px rgba(31,67,104,0.04);
+  box-sizing: border-box;
+}
+
+.rezervacije-liste h2 {
+  margin: 0 0 12px 0;
+  color: #1f4368;
+}
+
+.rezervacije-liste table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.rezervacije-liste thead tr { background: #e9f2ff; }
+.rezervacije-liste th, .rezervacije-liste td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #eef6ff; color: #12354f; }
+.rezervacije-liste tbody tr:hover { background: #fbfdff; }
+
+/* Dugmad */
+.rezervacije-liste button { padding: 8px 10px; border-radius: 6px; border: none; cursor: pointer; font-weight: 600; width: 100%; box-sizing: border-box; }
+.rezervacije-liste .btn-accept { background: linear-gradient(180deg,#2d5c88,#23456a); color: #fff; box-shadow: 0 6px 16px rgba(45,92,136,0.08); }
+.rezervacije-liste .btn-reject { background: #fff; color: #c23b3b; border: 1px solid rgba(194,59,59,0.12); }
+.rezervacije-liste .btn-confirm { width:auto; background: #2d5c88; color: #fff; box-shadow: 0 6px 16px rgba(45,92,136,0.08); }
+
+.komentar-odbijanja { padding: 12px; background: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(31,67,104,0.03); box-sizing: border-box; width:100%;}
+.komentar-odbijanja label { display:block; margin-bottom:6px; color:#23456a; font-weight:600 }
+.komentar-odbijanja textarea { display:block; width:100%; max-width:100%; box-sizing: border-box; min-height:90px; padding:8px; border-radius:6px; border:1px solid #e3eefb }
+
+.error-message { margin-top:8px; color:#8a1f1f }
+
+/* Za responsive dizajn */
+@media (max-width: 760px) {
+  .rezervacije-liste { padding: 12px }
+  .rezervacije-liste table { display:block; overflow-x:auto }
+  .rezervacije-liste th, .rezervacije-liste td { white-space: nowrap }
+  .komentar-odbijanja textarea { min-height: 120px }
+}
+
+/* Kalendar wrapper */
+.kalendar {
+  max-width: 1400px;
+  margin: 20px auto;
+  box-sizing: border-box;
+}
+
+
+/* Modal backdrop */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.modal-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 18px 20px;
+  width: 100%;
+  max-width: 460px;
+  box-shadow: 0 12px 36px rgba(16,40,80,0.28);
+  box-sizing: border-box;
+  text-align: center;
+}
+.modal-card h3 {
+  margin: 0 0 8px 0;
+  color: #1f4368;
+  font-size: 1.15rem;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 12px;
+}
+.modal-actions button {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  min-width: 92px;
+}
+/* Prvo dugme = Prihvati */
+.modal-actions button:nth-child(1) {
+  background: linear-gradient(180deg,#2d5c88,#23456a);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(45,92,136,0.12);
+}
+/* Drugo dugme = Odbij */
+.modal-actions button:nth-child(2) {
+  background: #fff;
+  color: #c23b3b;
+  border: 1px solid rgba(194,59,59,0.12);
+}
+/* Trece dugme = Odustani */
+.modal-actions button:nth-child(3) {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+/* Komentar unutar modala */
+.komentar-odbijanja-modal {
+  margin-top: 14px;
+  background: #ffffff;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(16,40,80,0.12);
+  max-width: 460px;
+  width: 50%;
+  box-sizing: border-box;
+  color: #16364f;
+}
+.komentar-odbijanja-modal label { display:block; margin-bottom:6px; font-weight:600 }
+.komentar-odbijanja-modal textarea { width:100%; min-height:90px; padding:8px; border-radius:6px; border:1px solid #e3eefb; box-sizing:border-box }
+.komentar-odbijanja-modal button { margin-top:10px; padding:8px 12px; border-radius:8px; background:#2d5c88; color:#fff; border:none; cursor:pointer }
+
+@media (max-width: 520px) {
+  .modal-card, .komentar-odbijanja-modal { max-width: 95%; padding: 12px }
+  .modal-actions { flex-direction: column; gap: 8px }
+  .modal-actions button { min-width: auto; width: 100% }
+}
+
+

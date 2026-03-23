@@ -1,0 +1,98 @@
+<nav class="navbar">
+    <div class="nav-title">Rezervacije</div>
+    <div class="nav-buttons">
+        <button class="nav-button" (click)="profil()">Profil</button>
+        <button class="nav-button" (click)="vikendice()">Vikendice</button>
+        <button class="nav-button" (click)="rezervacije()">Rezervacije</button>
+        <button class="nav-button" (click)="odjava()">Odjava</button>
+    </div>
+</nav>
+<div class="rezervacije-liste">
+  <h2>Lista aktivnih rezervacija</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Datum dolaska</th>
+          <th>Datum odlaska</th>
+          <th>Naziv vikendice</th>
+          <th>Mesto vikendice</th>
+          <th>Status</th>
+          <th>Otkazivanje</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(rezervacija of aktivneRezervacije; track rezervacija.id){
+          <tr>
+            <td>{{ rezervacija.datum_od| date:'dd.MM.yyyy.' }} {{rezervacija.vreme_od}}</td>
+            <td>{{ rezervacija.datum_do | date:'dd.MM.yyyy.' }} {{rezervacija.vreme_do}}</td>
+            <td>{{ rezervacija.naziv }}</td>
+            <td>{{ rezervacija.mesto }}</td>
+            <td>{{ rezervacija.status === 'na_cekanju' ? 'na čekanju' : rezervacija.status}}</td>
+            <td><button (click)="otkaziRezervaciju(rezervacija.id)" [disabled]="nemoguceOtkazivanje(rezervacija)">Otkaži</button></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    <div *ngIf ="errorMessage1" class="error-message">
+        {{ errorMessage1 }}
+    </div>
+</div>
+<div class="rezervacije-liste">
+  <h2>Lista arhiviranih rezervacija</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Datum dolaska</th>
+          <th>Naziv vikendice</th>
+          <th>Komentar</th>
+          <th>Ocena</th>
+          <th>Akcija</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(rezervacija of arhiviraneRezervacije; track rezervacija.id){
+          <tr>
+            <td>{{ rezervacija.datum_od| date:'dd.MM.yyyy.' }} {{rezervacija.vreme_od}}</td>
+            <td>{{ rezervacija.naziv }}</td>
+            <td>{{ rezervacija.tekst }}</td>
+            <td>@if(rezervacija.ocena != 0){
+              <span class="star-prikaz" *ngFor="let s of brojZvezda(rezervacija.ocena)">★</span>
+            }</td>
+            <td>
+              <div *ngIf = "!nemogucKomentar(rezervacija.tekst, rezervacija.ocena, rezervacija.status); else komentarisano">
+                <button (click)="otvoriKomponentu(rezervacija.id)">Ostavi komentar i ocenu</button>
+              </div>
+              <ng-template #komentarisano>
+                @if(rezervacija.status === 'odbijena'){
+                  <span>Rezervacija nije odobrena. Razlog: {{ rezervacija.komentar_odbijanja }}</span>
+                }@else if(rezervacija.status === 'otkazana'){
+                  <span>Otkazali ste rezervaciju</span>
+                }
+                @else {
+                  <span>Već ste ostavili komentar i ocenu</span>
+                }
+              </ng-template>
+            </td>
+          </tr>
+          <tr *ngIf="trenutniId === rezervacija.id">
+            <td colspan="5">
+              <label for="komentar">Komentar:</label>
+              <textarea id="komentar" [(ngModel)]="komentarTekst" name="komentar" rows="4" cols="50" required></textarea>
+              <br>
+              <label for="ocena">Ocena:</label>
+              <div id="ocena" class="rating" role="radiogroup" aria-label="Ocena">
+                <button type="button" class="star" *ngFor="let s of [1,2,3,4,5]" role="radio" (click)="ocena = s" [title]="s + ' od 5'">
+                  <span [class.filled]="s <= ocena">★</span>
+                </button>
+              </div>
+              <br>
+              <button (click)="ostaviKomentar(rezervacija.id)">Potvrdi</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+  </table>
+  <div *ngIf ="errorMessage2" class="error-message">
+      {{ errorMessage2 }}
+  </div>
+</div>

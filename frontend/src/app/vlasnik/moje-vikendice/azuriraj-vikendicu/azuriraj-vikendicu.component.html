@@ -1,0 +1,50 @@
+<nav class="navbar">
+    <div class="nav-title">Ažuriraj vikendicu</div>
+    <div class="nav-buttons">
+        <button type="button" class="nav-button" (click)="nazad()">Nazad</button>
+    </div>
+</nav>
+<div class="vikendica-dodavanje">
+  <form class="vikendica-form" (ngSubmit)="azurirajVikendicu()">
+      <h2>Ažuriraj vikendicu</h2>
+      <label for="naziv">Naziv vikendice:</label>
+      <input type="text" id="naziv" [(ngModel)]="staraVikendica.naziv" name="naziv" required>
+      <br>
+      <label for="mesto">Mesto:</label>
+      <input type="text" id="mesto" [(ngModel)]="staraVikendica.mesto" name="mesto" required>
+      <br>
+      <label for="telefon">Kontakt telefon:</label>
+      <input type="text" id="telefon" [(ngModel)]="staraVikendica.telefon" name="telefon" required (input)="onTelefonInput($event)">
+      <br>
+      <label for="usluge">Usluge (odvojene zarezom):</label>
+      <input type="text" id="usluge" [(ngModel)]="staraVikendica.usluge" name="usluge" required>
+      <br>
+      <label for="latituda">Geografska širina (latituda):</label>
+      <input type="number" step="any" id="latituda" [(ngModel)]="staraVikendica.lat" name="latituda" required>
+      <br>
+      <label for="longituda">Geografska dužina (longituda):</label>
+      <input type="number" step="any" id="longituda" [(ngModel)]="staraVikendica.lon" name="longituda" required>
+      <br>
+      <label for="cenovnik">Cenovnik:</label>
+      <label for="letnjaCena">Letnja cena</label>
+      <input type="number" id="letnjaCena" [(ngModel)]="cenovnikLeto" name="letnjaCena" required>
+      <br>
+      <label for="zimskaCena">Zimska cena</label>
+      <input type="number" id="zimskaCena" [(ngModel)]="cenovnikZima" name="zimskaCena" required>
+      <br>
+      <label for="slike">Dodajte slike vikendice:</label>
+      <input type="file" id="slike" (change)="onFileSelected($event)" multiple>
+      <br>
+      <div class="slike-preview">
+          <div *ngFor="let slika of slikeZaPrikaz" class="slika-container">
+              <img [src]="slika" alt="Slika vikendice" class="slika-vikendice">
+              <button type="button" class="btn-obrisi-sliku" (click)="obrisiSliku(slika)">Obriši</button>
+          </div>
+      </div>
+    <button type="submit">Ažuriraj vikendicu</button>
+      <div class="error-message" *ngIf="errorMessage2">
+          {{ errorMessage2 }}
+      </div>
+  </form>
+</div>
+

@@ -1,0 +1,95 @@
+.rezervacije-liste {
+	max-width: 1080px;
+	margin: 20px auto;
+	padding: 18px;
+	background: linear-gradient(180deg,#ffffff,#fbfdff);
+	border-radius: 10px;
+	box-shadow: 0 6px 24px rgba(31,67,104,0.04);
+	box-sizing: border-box;
+}
+
+.rezervacije-liste h2 {
+	margin: 0 0 14px 0;
+	color: #12354f;
+	font-size: 1.25rem;
+}
+
+/* Tabele */
+.rezervacije-liste table {
+	width: 100%;
+	border-collapse: collapse;
+	background: #fff;
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.rezervacije-liste thead tr { background: #e9f2ff }
+.rezervacije-liste th, .rezervacije-liste td {
+	text-align: left;
+	padding: 12px 14px;
+	border-bottom: 1px solid #eef6ff;
+	color: #12354f;
+	vertical-align: middle;
+}
+
+.rezervacije-liste tbody tr:hover { background: #fcfeff }
+
+.rezervacije-liste button {
+	background: linear-gradient(180deg,#2d5c88,#23456a);
+	color: #fff;
+	border: none;
+	padding: 8px 12px;
+	border-radius: 8px;
+	cursor: pointer;
+	font-weight: 600;
+}
+
+.rezervacije-liste .error-message {
+	margin-top: 12px;
+	color: #a33;
+	background: #fff6f6;
+	padding: 10px 12px;
+	border-radius: 8px;
+	border: 1px solid rgba(163,51,51,0.08);
+}
+
+/* Komentar */
+textarea#komentar {
+	width: 100%;
+	resize: vertical;
+	min-height: 88px;
+	padding: 8px 10px;
+	border-radius: 6px;
+	border: 1px solid #e6eef9;
+	background: #fbfdff;
+	color: #12354f;
+	box-sizing: border-box;
+}
+
+label { font-weight:600; color:#23456a }
+
+/* Zvezde */
+.rating { display:flex; gap:8px; align-items:center; margin-top:8px }
+.rating .star { background:transparent; border:none; cursor:pointer; font-size:20px; padding:6px; line-height:1 }
+.rating .star span { color:#d6dbe0; transition: color .12s }
+.rating .star span.filled { color:#e6b325 }
+.rating .star:focus { outline:2px solid rgba(45,92,136,0.12); border-radius:6px }
+.star-prikaz { color:#e6b325; font-size:20px; margin-right:2px }
+
+/* Dugme za potvrdu */
+.rezervacije-liste button[type="submit"], .rezervacije-liste .confirm-btn {
+	background: linear-gradient(180deg,#2d5c88,#23456a);
+}
+
+/* Responzivnost */
+@media (max-width: 880px) {
+	.rezervacije-liste { padding: 12px }
+	.rezervacije-liste table { display:block; width:100%; overflow-x:auto }
+	.rezervacije-liste th, .rezervacije-liste td { white-space:nowrap }
+}
+
+@media (max-width: 520px) {
+	.rating { gap:6px }
+	.rating .star { font-size:18px; padding:4px }
+}
+

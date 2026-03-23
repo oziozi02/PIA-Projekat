@@ -1,0 +1,76 @@
+<nav class="navbar">
+    <div class="nav-title">Rezervacije</div>
+    <div class="nav-buttons">
+        <button class="nav-button" (click)="profil()">Profil</button>
+        <button class="nav-button" (click)="rezervacije()">Rezervacije</button>
+        <button class="nav-button" (click)="mojeVikendice()">Moje vikendice</button>
+        <button class="nav-button" (click)="statistika()">Statistika</button>
+        <button class="nav-button" (click)="odjava()">Odjava</button>
+    </div>
+</nav>
+<div class = "rezervacije-liste">
+    <h2>Lista neobradjenih rezervacija</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Datum odlaska</th>
+                <th>Datum dolaska</th>
+                <th>Naziv vikendice</th>
+                <th>Mesto vikendice</th>
+                <th>Broj odraslih</th>
+                <th>Broj dece</th>
+                <th>Dodatni zahtevi</th>
+                <th>Akcija</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(rezervacija of neobradjeneRezervacije; track rezervacija.id){
+                <tr>
+                    <td>{{ rezervacija.datum_od| date:'dd.MM.yyyy.' }}</td>
+                    <td>{{ rezervacija.datum_do | date:'dd.MM.yyyy.' }}</td>
+                    <td>{{ rezervacija.naziv }}</td>
+                    <td>{{ rezervacija.mesto }}</td>
+                    <td>{{ rezervacija.broj_odraslih }}</td>
+                    <td>{{ rezervacija.broj_dece }}</td>
+                    <td>{{ rezervacija.opis }}</td>
+                    <td>
+                        <button (click)="prihvatiRezervaciju(rezervacija.id)" class="btn-accept">Prihvati</button>
+                        <button (click)="odbijUnesiKomentar(rezervacija.id)" class="btn-reject">Odbij</button>
+                    </td>
+                </tr>
+                <tr *ngIf="trenutniId === rezervacija.id">
+                    <td colspan="8">
+                        <div class="komentar-odbijanja">
+                          <label for="komentar">Unesite komentar za odbijenu rezervaciju:</label>
+                          <textarea id="komentar" [(ngModel)]="rezervacija.komentar_odbijanja" name="komentar" required></textarea>
+                          <br>
+                          <button (click)="odbijRezervaciju(rezervacija.id, rezervacija.komentar_odbijanja)" class="btn-confirm">Potvrdi odbijanje</button>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+  </div>
+</div>
+<div class="kalendar">
+  <full-calendar [options]="calendarOptions"></full-calendar>
+</div>
+<div class="modal-backdrop" *ngIf="showConfirmModal">
+  <div class="modal-card">
+      <h3>Izaberite radnju</h3>
+      <div class="modal-actions">
+          <button type="button" (click)="prihvatiRezervaciju(modalId)">Prihvati</button>
+          <button type="button" (click)="odbijUnesiKomentarZaModal(modalId)">Odbij</button>
+          <button type="button" (click)="closeModal()">Odustani</button>
+      </div>
+  </div>
+  <div class="komentar-odbijanja-modal" *ngIf="modalId == modalKomentarId">
+    <label for="komentar">Unesite komentar za odbijenu rezervaciju:</label>
+    <textarea id="komentar" [(ngModel)]="modalKomentar" name="komentar" required></textarea>
+    <br>
+    <button (click)="odbijRezervaciju(modalId, modalKomentar)">Potvrdi odbijanje</button>
+</div>
+</div>

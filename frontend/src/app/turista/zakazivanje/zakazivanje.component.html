@@ -1,0 +1,57 @@
+<nav class="navbar">
+    <div class="nav-title">Rezervacija</div>
+    <div class="nav-buttons">
+        <button class="nav-button" (click)="odustani()">Odustani</button>
+    </div>
+</nav>
+<div class="zakazivanje">
+    <h2>Zakazivanje vikendice: {{ vikendica.naziv }} ({{ vikendica.mesto }})</h2>
+    <hr>
+    <form class="zakazivanje-form" (ngSubmit)="zakazi()">
+      @if(korak == 1){
+        <label for="datum_od">Datum od:</label>
+        <input type="date" id="datum_od" [(ngModel)]="datumOd" name="datum_od" [min]="minDate" required>
+        <br>
+        <label>Vreme dolaska:</label>
+        <select [(ngModel)]="vremeDo" name="vreme_dolaska" required>
+            <option *ngFor="let vreme of dostupnaVremenaDolaska" [value]="vreme">{{ vreme }}</option>
+        </select>
+        <label for="datum_do">Datum do:</label>
+        <input type="date" id="datum_do" [(ngModel)]="datumDo" name="datum_do" [min]="minDate" required>
+        <br>
+        <label>Vreme odlaska:</label>
+        <select [(ngModel)]="vremeOd" name="vreme_odlaska" required>
+            <option *ngFor="let vreme of dostupnaVremenaOdlaska" [value]="vreme">{{ vreme }}</option>
+        </select>
+        <br>
+        <label>Broj odraslih:</label>
+        <input type="number" [(ngModel)]="brojOdraslih" name="broj_odraslih" min="1" required>
+        <br>
+        <label>Broj dece:</label>
+        <input type="number" [(ngModel)]="brojDece" name="broj_dece" min="0" required>
+        <br>
+        <button type="button" (click)="nastavi()">Nastavi</button>
+      }
+      @else if(korak == 2){
+        <h3>Pregled rezervacije</h3>
+        <p><strong>Vikendica:</strong> {{ vikendica.naziv }} ({{ vikendica.mesto }})</p>
+        <p><strong>Od:</strong> {{ datumOd | date:'dd.MM.yyyy' }} u {{ vremeDo }}</p>
+        <p><strong>Do:</strong> {{ datumDo | date:'dd.MM.yyyy' }} u {{ vremeOd }}</p>
+        <p><strong>Broj odraslih:</strong> {{ brojOdraslih }}</p>
+        <p><strong>Broj dece:</strong> {{ brojDece }}</p>
+        <p><strong>Ukupna cena:</strong> {{ cena }} RSD</p>
+        <br>
+        <label>Broj kartice za plaćanje:</label>
+        <input type="text" [(ngModel)]="brojKartice" name="broj_kartice" required (input)="onBrojKarticeInput($event)">
+        <br>
+        <label>Dodatni zahtevi (opcioni):</label>
+        <textarea [(ngModel)]="dodatniZahtevi" name="dodatni_zahtevi" rows="4" cols="50" maxlength="500"></textarea>
+        <br>
+        <button type="button" (click)="nazad()">Nazad</button>
+        <button type="submit">Potvrdi rezervaciju</button>
+      }
+    </form>
+    <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+    </div>
+</div>

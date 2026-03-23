@@ -1,0 +1,97 @@
+<nav class="navbar">
+    <div class="nav-title">Moje vikendice</div>
+    <div class="nav-buttons">
+        <button class="nav-button" (click)="profil()">Profil</button>
+        <button class="nav-button" (click)="rezervacije()">Rezervacije</button>
+        <button class="nav-button" (click)="mojeVikendice()">Moje vikendice</button>
+        <button class="nav-button" (click)="statistika()">Statistika</button>
+        <button class="nav-button" (click)="odjava()">Odjava</button>
+    </div>
+</nav>
+<div class = "vikendice-liste">
+    <h2>Lista mojih vikendica</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Naziv</th>
+                <th>Mesto</th>
+                <th>Usluge</th>
+                <th>Telefon</th>
+                <th>Privremeno blokirana</th>
+                <th>Akcije</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(vikendica of vikendice; track vikendica.id){
+              <tr>
+                <td>{{ vikendica.naziv }}</td>
+                <td>{{ vikendica.mesto }}</td>
+                <td>{{ vikendica.usluge }}</td>
+                <td>{{ vikendica.telefon }}</td>
+                <td>{{ vikendica.blokirana_do ? 'Blokirana do ' + (vikendica.blokirana_do | date : 'dd.MM.yyyy. HH:mm') : 'Nije blokirana' }}</td>
+                    <td>
+                        <button type="button" (click)="izmeniVikendicu(vikendica.id)">Izmeni</button>
+                        <button type="button" (click)="obrisiVikendicu(vikendica.id)">Obriši</button>
+                    </td>
+              </tr>
+            }
+        </tbody>
+    </table>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+</div>
+<div class="modal-backdrop" *ngIf="showConfirmModal">
+  <div class="modal-card">
+      <h3>Potvrdite brisanje</h3>
+      <p>Da li ste sigurni da želite da obrišete ovu vikendicu? Ova akcija je nepovratna.</p>
+      <div class="modal-actions">
+          <button type="button" class="btn-cancel" (click)="cancelDelete()">Otkaži</button>
+          <button type="button" class="btn-confirm" (click)="confirmDelete()">Obriši</button>
+      </div>
+  </div>
+</div>
+<div class="vikendica-dodavanje">
+  <form class="vikendica-form" (ngSubmit)="dodajVikendicu()">
+      <h2>Dodaj novu vikendicu</h2>
+      <label for="json">Dodajte JSON fajl(opciono):</label>
+      <input type="file" id="json" (change)="onJsonSelected($event)" accept=".json">
+      <br>
+      <label for="naziv">Naziv vikendice:</label>
+      <input type="text" id="naziv" [(ngModel)]="novaVikendica.naziv" name="naziv" required>
+      <br>
+      <label for="mesto">Mesto:</label>
+      <input type="text" id="mesto" [(ngModel)]="novaVikendica.mesto" name="mesto" required>
+      <br>
+      <label for="telefon">Kontakt telefon:</label>
+      <input type="text" id="telefon" [(ngModel)]="novaVikendica.telefon" name="telefon" required (input)="onTelefonInput($event)">
+      <br>
+      <label for="usluge">Usluge (odvojene zarezom):</label>
+      <input type="text" id="usluge" [(ngModel)]="novaVikendica.usluge" name="usluge" required>
+      <br>
+      <label for="latituda">Geografska širina (latituda):</label>
+      <input type="number" step="any" id="latituda" [(ngModel)]="novaVikendica.lat" name="latituda" required>
+      <br>
+      <label for="longituda">Geografska dužina (longituda):</label>
+      <input type="number" step="any" id="longituda" [(ngModel)]="novaVikendica.lon" name="longituda" required>
+      <br>
+      <label for="cenovnik">Cenovnik:</label>
+      <label for="letnjaCena">Letnja cena</label>
+      <input type="number" id="letnjaCena" [(ngModel)]="cenovnikLeto" name="letnjaCena" required>
+      <br>
+      <label for="zimskaCena">Zimska cena</label>
+      <input type="number" id="zimskaCena" [(ngModel)]="cenovnikZima" name="zimskaCena" required>
+      <br>
+      <label for="slike">Dodajte slike vikendice:</label>
+      <input type="file" id="slike" (change)="onFileSelected($event)" multiple>
+      <br>
+      <div class="slike-preview">
+          <div *ngFor="let slika of slikeZaPrikaz" class="slika-container">
+              <img [src]="slika" alt="Slika vikendice" class="slika-vikendice">
+              <button type="button" class="btn-obrisi-sliku" (click)="obrisiSliku(slika)">Obriši</button>
+          </div>
+      </div>
+      <button type="submit">Dodaj vikendicu</button>
+      <div class="error-message" *ngIf="errorMessage2">
+          {{ errorMessage2 }}
+      </div>
+  </form>
+</div>

@@ -1,0 +1,65 @@
+<nav class="navbar">
+    <div class="nav-title">Registracija</div>
+    <div class="nav-buttons">
+        <button class="nav-button" (click)="pocetna()">Početna</button>
+        <button class="nav-button" (click)="login()">Prijava</button>
+        <button class="nav-button" (click)="registracija()">Registracija</button>
+        <button class="nav-button" (click)="promeniLozinku()">Promena lozinke</button>
+    </div>
+</nav>
+<div class="register">
+    <h2>Registracija</h2>
+    <form class="registracija-form" (ngSubmit)="registrujSe()">
+        <label for="uloga">Kategorija:</label>
+        <select id="uloga" [(ngModel)]="uloga" name="uloga" required>
+            <option value="vlasnik">Vlasnik</option>
+            <option value="turista">Turista</option>
+        </select>
+        <br>
+        <label for="username">Korisničko ime:</label>
+        <input type="text" id="username" [(ngModel)]="korisnicko_ime" name="username" required>
+        <br>
+        <label for="password">Lozinka:</label>
+        <input type="password" id="password" [(ngModel)]="lozinka" name="password" (input)="proveraLozinke(lozinka)" required>
+        <br>
+        @if(!lozinkaValidna && passwordErrorMessage){
+        <div class="error-message">
+            {{ passwordErrorMessage }}
+        </div>
+        <br>
+        }
+        <label for="ime">Ime:</label>
+        <input type="text" id="ime" [(ngModel)]="ime" name="ime" required>
+        <br>
+        <label for="prezime">Prezime:</label>
+        <input type="text" id="prezime" [(ngModel)]="prezime" name="prezime" required>
+        <br>
+        <label for="pol">Pol:</label>
+        <select id="pol" [(ngModel)]="pol" name="pol" required>
+            <option value="M">Muški</option>
+            <option value="Z">Ženski</option>
+        </select>
+        <br>
+        <label for="adresa">Adresa:</label>
+        <input type="text" id="adresa" [(ngModel)]="adresa" name="adresa" required>
+        <br>
+        <label for="telefon">Telefon:</label>
+        <input type="text" id="telefon" [(ngModel)]="telefon" name="telefon" required (input)="onTelefonInput($event)">
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" [(ngModel)]="mejl" name="email" required>
+        <br>
+        <label for="slika">Slika:</label>
+        <input type="file" id="slika" (change)="onFileSelected($event)" name="slika">
+        <br>
+        <label for="broj_kartice">Broj kartice:</label>
+        <input type="text" id="broj_kartice" [(ngModel)]="broj_kartice" name="broj_kartice" required (input)="onBrojKarticeInput($event)">
+        <img *ngIf="karticaValidna" [src]="ikonaKartice" alt="Ikona kartice" class="ikona-kartice"/>
+        <br>
+        <button type="submit">Registruj se</button>
+    </form>
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+
+</div>

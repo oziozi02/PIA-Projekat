@@ -1,0 +1,35 @@
+<nav class="navbar">
+    <div class="nav-title">Statistika</div>
+    <div class="nav-buttons">
+        <button class="nav-button" (click)="profil()">Profil</button>
+        <button class="nav-button" (click)="rezervacije()">Rezervacije</button>
+        <button class="nav-button" (click)="mojeVikendice()">Moje vikendice</button>
+        <button class="nav-button" (click)="statistika()">Statistika</button>
+        <button class="nav-button" (click)="odjava()">Odjava</button>
+    </div>
+</nav>
+<div class="charts" *ngIf="postojeRezervacije(); else nemaRezervacija">
+    <div class="chart-container">
+        <h2>Broj rezervacija po mesecima</h2>
+        <div class="chart-grid">
+            <div class="chart" *ngFor="let kolona of podaciZaKolone;">
+                <h3>{{ kolona.naziv }}</h3>
+                <canvas #barChart></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="pie-chart-container">
+        <h2>Broj rezervacija tokom vikenda i radnim danima</h2>
+        <div class="pie-grid">
+            <div class="pie" *ngFor="let pita of podaciZaPite;">
+                <h3>{{ pita.naziv }}</h3>
+                <canvas #pieChart></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #nemaRezervacija>
+    <div class="nema-rezervacija-message">
+        <h2>Trenutno nema rezervacija za prikaz statistike.</h2>
+    </div>
+</ng-template>

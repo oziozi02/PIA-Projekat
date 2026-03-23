@@ -1,0 +1,118 @@
+/* Zakazivanje */
+.zakazivanje {
+	max-width: 980px;
+	margin: 18px auto;
+	padding: 18px;
+	background: linear-gradient(180deg, #ffffff, #fbfdff);
+	border-radius: 10px;
+	box-shadow: 0 6px 24px rgba(31,67,104,0.06);
+	color: #12354f;
+	box-sizing: border-box;
+}
+
+.zakazivanje h2 {
+	margin: 0 0 8px 0;
+	color: #1f4368;
+	font-size: 1.35rem;
+	text-align: left;
+}
+
+.zakazivanje hr {
+	border: none;
+	height: 1px;
+	background: linear-gradient(90deg, rgba(45,92,136,0.08), rgba(45,92,136,0.16));
+	margin: 12px 0 18px 0;
+}
+
+.zakazivanje-form {
+	display: block;
+}
+
+.zakazivanje-form label {
+	display: inline-block;
+	margin: 10px 0 6px 0;
+	color: #23456a;
+	font-weight: 600;
+}
+
+.zakazivanje-form input[type="date"],
+.zakazivanje-form input[type="number"],
+.zakazivanje-form input[type="text"],
+.zakazivanje-form select,
+.zakazivanje-form textarea {
+	width: 100%;
+	padding: 8px 10px;
+	border: 1px solid #e3eefb;
+	border-radius: 6px;
+	background: #fff;
+	color: #12354f;
+	box-sizing: border-box;
+	margin-bottom: 8px;
+}
+
+.zakazivanje-form textarea { resize: vertical; min-height: 90px; }
+
+/* Korak 1*/
+@media (min-width: 800px) {
+	.step-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 12px 18px;
+		align-items: start;
+	}
+	.zakazivanje h2 { text-align: left; }
+}
+
+/* Dugmad */
+.zakazivanje .btn-primary,
+.zakazivanje button[type="submit"] {
+	background: linear-gradient(180deg,#2d5c88,#23456a);
+	color: #fff;
+	border: none;
+	padding: 10px 14px;
+	border-radius: 8px;
+	font-weight: 700;
+	cursor: pointer;
+	box-shadow: 0 6px 18px rgba(45,92,136,0.12);
+	margin-top: 10px;
+}
+
+.zakazivanje .btn-secondary,
+.zakazivanje button[type="button"] {
+	background: #eef6ff;
+	color: #2d5c88;
+	border: 1px solid rgba(45,92,136,0.08);
+	padding: 8px 12px;
+	border-radius: 8px;
+	cursor: pointer;
+	margin-top: 10px;
+}
+
+
+/* Korak 2 - Pregled */
+.zakazivanje .review {
+	background: #ffffff;
+	border-radius: 8px;
+	padding: 12px;
+	box-shadow: 0 4px 12px rgba(31,67,104,0.04);
+	margin-bottom: 8px;
+}
+.zakazivanje .review h3 { margin-top:0; color:#2d5c88 }
+.zakazivanje .review p { margin:6px 0; color:#23456a }
+
+.zakazivanje .error-message {
+	margin-top: 10px;
+	color: #8a1f1f;
+	background: rgba(138,31,31,0.04);
+	padding: 8px 10px;
+	border-radius: 6px;
+	border: 1px solid rgba(138,31,31,0.08);
+}
+
+/* Za mobilni prikaz */
+@media (max-width: 799px) {
+	.zakazivanje { padding: 14px; margin: 12px; }
+	.zakazivanje h2 { font-size: 1.15rem }
+}
+
+

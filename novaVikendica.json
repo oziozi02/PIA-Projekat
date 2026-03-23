@@ -1,0 +1,10 @@
+{
+  "naziv": "Sigma Vikendica",
+  "mesto": "Gangstanville",
+  "telefon": "0123456789",
+  "usluge": ["WiFi", "Parking", "Doručak"],
+  "lat": 45.123456,
+  "lon": 10.123456,
+  "cenovnikLeto": 1500,
+  "cenovnikZima": 2000
+}

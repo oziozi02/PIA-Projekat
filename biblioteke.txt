@@ -1,0 +1,10 @@
+Za interaktivnu mapu: npm install leaflet
+Za statistiku: npm install chart.js
+Za fullcalendar: npm install --save @fullcalendar/angular @fullcalendar/core @fullcalendar/daygrid @fullcalendar/interaction
+
+Za backend(pom.xml):
+<dependency>
+	<groupId>org.mindrot</groupId>
+	<artifactId>jbcrypt</artifactId>
+	<version>0.4</version>
+</dependency>

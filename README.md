@@ -2,6 +2,7 @@
 
 Full-stack web application for **booking and managing mountain cottages** (*planinske vikendice*), built using **Angular**, **Spring Boot**, and **MySQL**.  
 Developed as part of the *Programiranje internet aplikacija (PIA)* course, academic year 2024–2025.
+Details about the application can be found in the .pdf [document](PIA_2425_projekat.pdf).
 
 ---
 

@@ -1,0 +1,420 @@
+
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+app-root {
+	flex: 1;
+}
+
+.header {
+	background: url('/header-slika.png') center/cover no-repeat;
+	color: #fff;
+	text-align: center;
+	padding: 60px 20px 40px 20px;
+	box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+.header h1 {
+	font-size: 3rem;
+	margin-bottom: 10px;
+	text-shadow: 2px 2px 8px #333;
+}
+.header p {
+	font-size: 1.3rem;
+	margin-top: 0;
+	text-shadow: 1px 1px 6px #333;
+}
+
+.footer {
+	text-align: center;
+	padding: 18px 0;
+	background: #2d5c88;
+	color: #fff;
+	margin-top: 40px;
+}
+
+@media (max-width: 600px) {
+	.header h1 { font-size: 2rem; }
+}
+
+
+/* Pocetni meni(navbar) */
+.navbar {
+	display: flex;
+	align-items: center;
+	background: linear-gradient(90deg, #2d5c88 0%, #4a90e2 100%);
+	color: #fff;
+	padding: 0 24px;
+	height: 56px;
+	box-shadow: 0 2px 8px rgba(45,92,136,0.08);
+}
+.nav-title {
+	font-size: 1.4rem;
+	font-weight: 600;
+	letter-spacing: 1px;
+}
+.nav-buttons {
+	margin-left: auto;
+	display: flex;
+	gap: 12px;
+}
+.nav-button {
+	background: #e0eafc;
+	color: #2d5c88;
+	border: none;
+	border-radius: 6px;
+	padding: 8px 18px;
+	font-size: 1rem;
+	font-weight: 500;
+	cursor: pointer;
+	transition: background 0.2s, color 0.2s;
+	box-shadow: 0 1px 4px rgba(45,92,136,0.08);
+}
+.nav-button:hover {
+	background: #2d5c88;
+	color: #fff;
+}
+
+/* Sekcija pretrage */
+.search-form2 {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+	justify-content: center;
+	align-items: center;
+}
+.search-form2 label {
+	display: block;
+	margin: 12px 0 4px 0;
+	color: #2d5c88;
+	font-weight: 500;
+	text-align: left;
+}
+.search-form2 input[type="text"],
+.search-form2 input[type="password"] {
+	padding: 8px 12px;
+	border: 1px solid #b0c4de;
+	border-radius: 6px;
+	font-size: 1rem;
+	background: #fff;
+	color: #2d5c88;
+	margin-right: 8px;
+	transition: border 0.2s;
+  width: 100%;
+	box-sizing: border-box;
+	margin-bottom: 12px;
+}
+.search-form2 input[type="text"]:focus,
+.search-form2 input[type="password"]:focus {
+	border-color: #2d5c88;
+	outline: none;
+}
+.search-form2 button[type="submit"] {
+	background: #2d5c88;
+	color: #fff;
+	border: none;
+	border-radius: 6px;
+	padding: 10px 24px;
+	font-size: 1rem;
+	font-weight: 500;
+	cursor: pointer;
+	box-shadow: 0 1px 4px rgba(45,92,136,0.08);
+	transition: background 0.2s;
+  width: 100%;
+	margin-top: 8px;
+}
+.search-form2 button[type="submit"]:hover {
+	background: #1b3c5a;
+}
+
+/* Login i promena lozinke */
+
+.login {
+	max-width: 400px;
+	margin: 48px auto;
+	background: #e0eafc;
+	border-radius: 12px;
+	box-shadow: 0 2px 12px rgba(45,92,136,0.10);
+	padding: 32px 28px 24px 28px;
+	text-align: center;
+}
+.login h2 {
+	color: #2d5c88;
+	margin-bottom: 24px;
+	font-size: 2rem;
+}
+.error-message {
+	color: #d32f2f;
+	background: #fff0f0;
+	border-radius: 6px;
+	padding: 10px 0;
+	margin-top: 18px;
+	font-size: 1rem;
+	min-height: 22px;
+}
+
+/* Pretraga (search) sekcija */
+.pretraga {
+	background: #e0eafc;
+	border-radius: 10px;
+	box-shadow: 0 1px 8px rgba(45,92,136,0.07);
+	padding: 24px 32px;
+	margin: 32px 0;
+	max-width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+.pretraga h3 {
+	color: #2d5c88;
+	margin-bottom: 18px;
+}
+
+
+.lista-vikendica {
+	margin-top: 32px;
+}
+.lista-vikendica h3 {
+	color: #2d5c88;
+	margin-bottom: 12px;
+}
+.lista-vikendica table {
+	width: 100%;
+	border-collapse: collapse;
+	background: #fff;
+	border-radius: 10px;
+	box-shadow: 0 1px 8px rgba(45,92,136,0.07);
+	overflow: hidden;
+}
+.lista-vikendica th, .lista-vikendica td {
+	padding: 12px 16px;
+	text-align: left;
+}
+.lista-vikendica th {
+	background: #e0eafc;
+	color: #2d5c88;
+	font-weight: 600;
+}
+.lista-vikendica tr:nth-child(even) {
+	background: #f7fbff;
+}
+.lista-vikendica tr:hover {
+	background: #cfdef3;
+}
+
+/* Registracija */
+.register {
+	max-width: 480px;
+	margin: 48px auto;
+	background: #e0eafc;
+	border-radius: 14px;
+	box-shadow: 0 2px 16px rgba(45,92,136,0.10);
+	padding: 36px 32px 28px 32px;
+	text-align: center;
+}
+.register h2 {
+	color: #2d5c88;
+	margin-bottom: 28px;
+	font-size: 2rem;
+}
+.registracija-form label {
+	display: block;
+	margin: 14px 0 6px 0;
+	color: #2d5c88;
+	font-weight: 500;
+	text-align: left;
+}
+.registracija-form input[type="text"],
+.registracija-form input[type="password"],
+.registracija-form input[type="email"],
+.registracija-form input[type="file"],
+.registracija-form select {
+	width: 100%;
+	box-sizing: border-box;
+	margin-bottom: 14px;
+	padding: 9px 12px;
+	border: 1px solid #b0c4de;
+	border-radius: 7px;
+	font-size: 1rem;
+	background: #fff;
+	color: #2d5c88;
+	transition: border 0.2s;
+}
+.registracija-form input[type="file"] {
+	padding: 6px 0;
+}
+.registracija-form input:focus,
+.registracija-form select:focus {
+	border-color: #2d5c88;
+	outline: none;
+}
+.registracija-form button[type="submit"] {
+	width: 100%;
+	background: #2d5c88;
+	color: #fff;
+	border: none;
+	border-radius: 7px;
+	padding: 12px 0;
+	font-size: 1.1rem;
+	font-weight: 600;
+	cursor: pointer;
+	margin-top: 18px;
+	box-shadow: 0 2px 8px rgba(45,92,136,0.10);
+	transition: background 0.2s;
+}
+.registracija-form button[type="submit"]:hover {
+	background: #1b3c5a;
+}
+.ikona-kartice {
+	display: block;
+	margin: 12px auto 0 auto;
+	width: 96px;
+	height: 64px;
+	object-fit: contain;
+}
+
+/* Lista korisnika */
+.lista-korisnika {
+  max-width: 1100px;
+  margin: 22px auto;
+  background: #fff;
+  padding: 18px 20px;
+  border-radius: 10px;
+  box-shadow: 0 8px 18px rgba(35,69,106,0.06);
+  box-sizing: border-box;
+}
+
+.lista-korisnika h3 {
+  margin: 0 0 12px 0;
+  color: #23456a;
+  font-size: 20px;
+  text-align: left;
+}
+
+/* Tabela */
+.lista-korisnika table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.lista-korisnika thead th {
+  text-align: left;
+  padding: 10px 12px;
+  background: linear-gradient(180deg,#f4fbff,#eef8ff);
+  color: #16364f;
+  font-weight: 700;
+  border-bottom: 2px solid rgba(35,69,106,0.06);
+}
+
+.lista-korisnika tbody td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #f1f6fb;
+  vertical-align: middle;
+}
+
+.lista-korisnika tbody tr:hover {
+  background: #fafcff;
+}
+
+/* Akcije */
+.lista-korisnika td button {
+  margin-right: 8px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  background: #fff;
+  color: #23456a;
+}
+
+.lista-korisnika td button:hover { opacity: 0.95 }
+
+.lista-korisnika td button[type="button"] { box-shadow: none }
+
+/* Specifične akcije */
+.btn-azuriraj { background: linear-gradient(180deg,#ffffff,#f0f8ff); border:1px solid #e3eefb }
+.btn-blokiraj { background: #fff1f1; color:#922; border:1px solid rgba(146,34,34,0.08) }
+.btn-aktiviraj { background: linear-gradient(180deg,#e9f7ee,#f4fff6); color:#12643e; border:1px solid rgba(18,100,62,0.06) }
+
+/* Tabela se može horizontalno skrolovati na uskim ekranima */
+@media (max-width: 880px) {
+  .lista-korisnika { padding: 12px }
+  .lista-korisnika table { display:block; width:100%; overflow-x:auto }
+  .lista-korisnika thead { display:table-header-group }
+}
+
+/* FullCalendar css*/
+.kalendar .fc {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(16,40,80,0.06);
+  overflow: hidden;
+}
+
+.kalendar .fc-toolbar {
+  padding: 12px 14px;
+  background: linear-gradient(90deg,#f7fbff,#eef8ff);
+  margin-bottom: 0 !important;
+}
+.kalendar .fc-toolbar-title {
+  color: #1f4368;
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-right: auto;
+}
+.kalendar .fc-button-group .fc-button,
+.kalendar .fc-button {
+  background: #2d5c88;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(45,92,136,0.08);
+}
+.kalendar .fc-button:hover { background: #23456a }
+.kalendar .fc-button:disabled { opacity: 0.5 }
+
+/* Headeri za dane */
+.kalendar .fc-col-header-cell {
+  background: #f4f9ff;
+  border-bottom: 2px solid rgba(35,69,106,0.06);
+  padding: 8px 12px;
+}
+.kalendar .fc-col-header-cell-cushion { color: #23456a; font-weight:600; }
+
+/* Za svaki dan */
+.kalendar .fc-daygrid-day-frame { padding: 8px }
+.kalendar .fc-daygrid-event {
+  border: none;
+  border-radius: 6px;
+  padding: 4px 6px;
+  box-shadow: 0 6px 12px rgba(45,92,136,0.10);
+  font-weight:600;
+}
+
+.kalendar .fc-daygrid-event:hover {
+  box-shadow: 0 8px 20px rgba(45,92,136,0.15);
+  transform: translateY(-2px);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+@media (max-width: 760px) {
+  .kalendar { margin: 12px }
+  .kalendar .fc-toolbar { padding: 8px }
+  .kalendar .fc-toolbar-title { font-size: 0.95rem }
+}

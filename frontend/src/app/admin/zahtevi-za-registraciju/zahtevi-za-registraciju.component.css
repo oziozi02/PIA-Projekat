@@ -1,0 +1,61 @@
+.komentar-odbijanja-row td {
+  padding: 0;
+  background: #fff;
+}
+
+.komentar-odbijanja-row {
+  padding: 12px;
+  box-sizing: border-box;
+  background: #fff;
+  width: 100%;
+}
+
+.komentar-odbijanja-row form,
+.komentar-odbijanja-row .komentar-form {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.komentar-odbijanja-row label {
+  display:block;
+  font-weight:600;
+  color:#23456a;
+  margin-bottom:6px;
+}
+
+.komentar-odbijanja-row textarea {
+  width: 100%;
+  min-height: 86px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #e6f0fb;
+  resize: vertical;
+  font-size: 14px;
+  color: #1f445f;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.komentar-odbijanja-row button[type="submit"] {
+  background: linear-gradient(180deg,#d9534f,#c9302c);
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: 8px;
+  flex: 0 0 auto;
+}
+
+.komentar-odbijanja-row button[type="submit"]:hover { opacity: 0.95 }
+
+@media (max-width: 680px) {
+  .komentar-odbijanja-row form,
+  .komentar-odbijanja-row .komentar-form { flex-direction: column; }
+  .komentar-odbijanja-row button[type="submit"] { margin-left: 0; align-self: stretch }
+}

@@ -1,0 +1,53 @@
+<nav class="navbar">
+    <div class="nav-title">Zahtevi za registraciju</div>
+    <div class="nav-buttons">
+        <button class="nav-button" (click)="korisnici()">Korisnici</button>
+        <button class="nav-button" (click)="vikendice()">Vikendice</button>
+        <button class="nav-button" (click)="zahtevi()">Zahtevi</button>
+        <button class="nav-button" (click)="odjava()">Odjava</button>
+    </div>
+</nav>
+<div class="lista-korisnika">
+  <h2>Zahtevi za registraciju</h2>
+  <table>
+      <thead>
+          <tr>
+              <th>Korisničko ime</th>
+              <th>Datum podnošenja</th>
+              <th>Status</th>
+              <th>Komentar odbijanja</th>
+              <th>Akcije</th>
+          </tr>
+      </thead>
+      <tbody>
+          @for(zahtev of zahteviZaRegistraciju; track zahtev.id){
+              <tr>
+                  <td>{{ zahtev.korisnicko_ime }}</td>
+                  <td>{{ zahtev.datum_podnosenja | date: 'dd.MM.yyyy. HH:mm'}}</td>
+                  <td>{{ zahtev.status === 'na_cekanju' ? 'Na čekanju' : zahtev.status }}</td>
+                  <td>{{ zahtev.komentar_odbijanja }}</td>
+                  <td>
+                    @if(zahtev.status === 'na_cekanju'){
+                        <button type="button" (click)="prihvatiZahtev(zahtev.id)">Prihvati</button>
+                        <button type="button" (click)="otvoriKomentar(zahtev.id)">Odbij</button>
+                    }
+                  </td>
+              </tr>
+              <tr *ngIf="zahtev.id === odbijenId">
+                <td colspan="5">
+                  <div class="komentar-odbijanja-row">
+                        <form (ngSubmit)="posaljiKomentar(zahtev.id)">
+                            <label for="komentar">Unesite komentar odbijanja:</label>
+                            <br>
+                            <textarea id="komentar" [(ngModel)]="komentarOdbijanja" name="komentar" required></textarea>
+                            <br>
+                            <button type="submit">Pošalji komentar</button>
+                        </form>
+                  </div>
+                </td>
+              </tr>
+          }
+      </tbody>
+  </table>
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+</div>

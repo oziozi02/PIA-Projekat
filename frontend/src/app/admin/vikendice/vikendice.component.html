@@ -1,0 +1,43 @@
+<nav class="navbar">
+    <div class="nav-title">Vikendice</div>
+    <div class="nav-buttons">
+        <button class="nav-button" (click)="korisnici()">Korisnici</button>
+        <button class="nav-button" (click)="vikendice()">Vikendice</button>
+        <button class="nav-button" (click)="zahtevi()">Zahtevi</button>
+        <button class="nav-button" (click)="odjava()">Odjava</button>
+    </div>
+</nav>
+<div class="lista-vikendica">
+    <h3>Lista vikendica</h3>
+        <table>
+                <thead>
+                    <tr>
+                        <th>Vlasnik</th>
+                        <th>Naziv</th>
+                        <th>Mesto</th>
+                        <th>Usluge</th>
+                        <th>Telefon</th>
+                        <th>Geografska širina</th>
+                        <th>Geografska dužina</th>
+                        <th>Blokirana?</th>
+                        <th>Akcija</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let vikendica of sveVikendice" [class.highlighted-row]="vikendica.poslednje3Ocene">
+                        <td>{{ vikendica.vlasnik }}</td>
+                        <td>{{ vikendica.naziv }}</td>
+                        <td>{{ vikendica.mesto }}</td>
+                        <td>{{ vikendica.usluge }}</td>
+                        <td>{{ vikendica.telefon}}</td>
+                        <td>{{ vikendica.lat }}</td>
+                        <td>{{ vikendica.lon }}</td>
+                        <td>{{ vikendica.blokirana_do ? 'Do ' + (vikendica.blokirana_do | date : 'dd.MM.yyyy. HH:mm')   : 'Ne' }}</td>
+                        <td>
+                            <button (click)="blokirajVikendicu(vikendica.id, vikendica.blokirana_do)" [disabled]="!vikendica.poslednje3Ocene">Privremeno blokiraj</button>
+                        </td>
+                    </tr>
+                </tbody>
+        </table>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+</div>

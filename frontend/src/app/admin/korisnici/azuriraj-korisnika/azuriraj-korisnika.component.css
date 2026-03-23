@@ -1,0 +1,9 @@
+.trenutna-slika {
+  display: block;
+  margin: 12px auto 0 auto;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #2d5c88;
+}

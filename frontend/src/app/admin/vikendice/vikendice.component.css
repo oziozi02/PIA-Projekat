@@ -1,0 +1,22 @@
+.lista-vikendica tr.highlighted-row td {
+  background-color: #ffd6d6;
+}
+
+.lista-vikendica tr.highlighted-row:hover td {
+  background-color: #ffb3b3;
+}
+
+.lista-vikendica button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.lista-vikendica button:disabled {
+  background-color: #ffa6a6;
+  cursor: not-allowed;
+}

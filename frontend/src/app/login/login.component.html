@@ -1,0 +1,25 @@
+<nav class="navbar">
+    <div class="nav-title">Prijava</div>
+    <div class="nav-buttons">
+        <button class="nav-button" (click)="pocetna()">Početna</button>
+        <button class="nav-button" (click)="login()">Prijava</button>
+        <button class="nav-button" (click)="registracija()">Registracija</button>
+        <button class="nav-button" (click)="promeniLozinku()">Promena lozinke</button>
+    </div>
+</nav>
+<div class="login">
+    <h2>Prijava</h2>
+    <form class="search-form2" (ngSubmit)="prijaviSe()">
+        <label for="username">Korisničko ime:</label>
+        <input type="text" id="username" [(ngModel)]="username" name="username" required>
+        <br>
+        <label for="password">Lozinka:</label>
+        <input type="password" id="password" [(ngModel)]="password" name="password" required>
+        <br>
+        <button type="submit">Prijavi se</button>
+    </form>
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+
+</div>

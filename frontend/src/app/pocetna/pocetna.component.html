@@ -1,0 +1,53 @@
+<nav class="navbar">
+    <div class="nav-title">Početna strana</div>
+    <div class="nav-buttons">
+        <button class="nav-button" (click)="pocetna()">Početna</button>
+        <button class="nav-button" (click)="login()">Prijava</button>
+        <button class="nav-button" (click)="registracija()">Registracija</button>
+        <button class="nav-button" (click)="promeniLozinku()">Promena lozinke</button>
+    </div>
+</nav>
+<div class="info-section">
+    <h3>Informacije o sistemu</h3>
+    <div class="info">
+        Ukupan broj vikendica: {{ukupnoVikendica}} <br/>
+        Ukupan broj turista: {{ukupnoTurista}} <br/>
+        Ukupan broj vlasnika: {{ukupnoVlasnika}} <br/>
+        Ukupan broj rezervacija poslednjih 24h: {{brojRezervacija24h}} <br/>
+        Ukupan broj rezervacija poslednjih 7 dana: {{brojRezervacija7d}} <br/>
+        Ukupan broj rezervacija poslednjih 30 dana: {{brojRezervacija30d}} <br/>
+    </div>
+</div>
+<div class="pretraga">
+    <h3>Pretraga vikendica</h3>
+    <form class="search-form" (ngSubmit)="pretrazi()">
+        Naziv:<input type="text" [(ngModel)]="pretragaNaziv" name="naziv"/>
+        Mesto:<input type="text" [(ngModel)]="pretragaMesto" name="mesto"/>
+        <button type="submit">Pretraži</button>
+    </form>
+</div>
+<div class="lista-vikendica">
+    <h3>Lista vikendica</h3>
+        <table>
+                <thead>
+                    <tr>
+                        <th (click)="toggleSort('naziv')" style="cursor:pointer">
+                            Naziv
+                            <span *ngIf="sortKolona === 'naziv'">{{ sortSmer === 'asc' ? '▲' : '▼' }}</span>
+                        </th>
+                        <th (click)="toggleSort('mesto')" style="cursor:pointer">
+                            Mesto
+                            <span *ngIf="sortKolona === 'mesto'">{{ sortSmer === 'asc' ? '▲' : '▼' }}</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for(vikendica of sortedVikendice; track vikendica.id){
+                        <tr>
+                            <td>{{ vikendica.naziv }}</td>
+                            <td>{{ vikendica.mesto }}</td>
+                        </tr>
+                    }
+                </tbody>
+        </table>
+</div>

@@ -1,0 +1,58 @@
+<nav class="navbar">
+    <div class="nav-title">Ažuriraj korisnika</div>
+    <div class="nav-buttons">
+        <button class="nav-button" (click)="nazad()">Nazad</button>
+    </div>
+</nav>
+<div class="register">
+    <h2>Profil</h2>
+    <form class="registracija-form" (ngSubmit)="azurirajProfil()">
+        <label for="korisnicko_ime">Korisničko ime:</label>
+        <input type="text" id="korisnicko_ime" [(ngModel)]="korisnik.korisnicko_ime" name="korisnicko_ime" [defaultValue]="korisnik.korisnicko_ime" required readonly>
+        <br>
+        <label for="ime">Ime:</label>
+        <input type="text" id="ime" [(ngModel)]="korisnik.ime" name="ime" [defaultValue]="korisnik.ime" required>
+        <br>
+        <label for="prezime">Prezime:</label>
+        <input type="text" id="prezime" [(ngModel)]="korisnik.prezime" name="prezime" required>
+        <br>
+        <label for="adresa">Adresa:</label>
+        <input type="text" id="adresa" [(ngModel)]="korisnik.adresa" name="adresa" required>
+        <br>
+        <label for="telefon">Telefon:</label>
+        <input type="text" id="telefon" [(ngModel)]="korisnik.telefon" name="telefon" required (input)="onTelefonInput($event)">
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" [(ngModel)]="korisnik.mejl" name="email" required>
+        <br>
+        <label>Trenutna slika:</label>
+        <img [src]="profilna_slika" alt="Trenutna slika" class="trenutna-slika"/>
+        <br>
+        <label for="slika">Nova slika:</label>
+        <input type="file" id="slika" (change)="onFileSelected($event)" name="slika">
+        <br>
+        <label for="broj_kartice">Broj kartice:</label>
+        <input type="text" id="broj_kartice" [(ngModel)]="korisnik.broj_kartice" name="broj_kartice" required (input)="onBrojKarticeInput($event)">
+        @if(karticaValidna){
+            <img [src]="ikonaKartice" alt="Ikona kartice" class="ikona-kartice"/>
+        }
+        <br>
+        <label for="uloga">Uloga:</label>
+        <select id="uloga" [(ngModel)]="korisnik.uloga" name="uloga" required>
+            <option value="vlasnik">Vlasnik</option>
+            <option value="turista">Turista</option>
+        </select>
+        <br>
+        <label for="aktivan">Aktivan:</label>
+        <select id="aktivan" [(ngModel)]="korisnik.aktivan" name="aktivan" required>
+            <option [ngValue]="true">Da</option>
+            <option [ngValue]="false">Ne</option>
+        </select>
+        <br>
+        <button type="submit">Azuriraj profil</button>
+    </form>
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+
+</div>
